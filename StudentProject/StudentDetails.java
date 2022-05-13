@@ -1,35 +1,14 @@
+package StudentProject;
+
 import java.util.*;
-import java.util.List;
-
-class StudentData {
-    private int sno;
-    private String sfname;
-    private String slname;
-
-    StudentData(int sno, String sfname, String slname) {
-        this.sno = sno;
-        this.sfname = sfname;
-        this.slname = slname;
-    }
-
-    public int getSno() {
-        return sno;
-    }
-
-    public String getSlname() {
-        return slname;
-    }
-
-    public String getSfname() {
-        return sfname;
-    }
-
-    public String toString() {
-        return sno + " " + sfname + " " + slname;
-    }
-}
 
 class StudentDetails {
+    private static final int ADD_STUDENT = 1;
+    private static final int SHOW_STUDENT = 2;
+    private static final int SEARCH_STUDENT = 3;
+    private static final int REMOVE_STUDENT = 4;
+    private static final int UPDATE_STUDENT = 5;
+
     public static void main(String[] args) {
 
         List<StudentData> c = new ArrayList<StudentData>();
@@ -48,88 +27,86 @@ class StudentDetails {
             ch = s.nextInt();
 
             switch (ch) {
-                case 1:
+                case ADD_STUDENT:
                     System.out.println("--------------------------------------------------");
                     System.out.println("Please provide the data for the student to store. ");
                     System.out.print("Student id: ");
-                    int sno = s.nextInt();
+                    int eno = s.nextInt();
                     System.out.print("First name: ");
-                    String sfname = s1.nextLine();
+                    String StudentFirstName = s1.nextLine();
                     System.out.print("Last name: ");
-                    String slname = s1.nextLine();
-
-                    c.add(new StudentData(sno, sfname, slname));
+                    String StudentLastName = s1.nextLine();
+                    c.add(new StudentData(eno, StudentFirstName, StudentLastName));
                     break;
-                case 2:
+                case SHOW_STUDENT:
                     System.out.println("--------------------------------------------------");
-                    System.out.println("Id fname lname");
+                    System.out.printf("%-10s %-15s %-15s", "id", "firstname", "lastname");
+                    System.out.println();
                     Iterator<StudentData> i = c.iterator();
                     while (i.hasNext()) {
                         StudentData e = i.next();
-                        System.out.println(e);
+                        System.out.printf("%-10s %-15s %-15s", e.getStudentID(), e.getStudentFirstName(), e.getStudentLastName());
+                        System.out.println();
                     }
-                    System.out.println("--------------------------------------------------");
+                    System.out.println("----------------------------");
                     break;
-                case 3:
+                case SEARCH_STUDENT:
                     boolean found = false;
                     System.out.println("Please give the student id to search? ");
                     System.out.print("Student id:");
-                    int sno1 = s.nextInt();
+                    int StudentId = s.nextInt();
                     System.out.println("--------------------------------------------------");
                     i = c.iterator();
                     while (i.hasNext()) {
                         StudentData e = i.next();
-                        if (e.getSno() == sno1) {
+                        if (e.getStudentID() == StudentId) {
                             System.out.println(e);
                             found = true;
                         }
                     }
-
                     if (!found) {
                         System.out.println("Record Not Found");
                     }
                     System.out.println("--------------------------------------------------");
                     break;
-
-                case 4:
+                case REMOVE_STUDENT:
                     found = false;
-                    System.out.println("Please provide student id? ");
-                    System.out.print("Student id: ");
-                    sno1 = s.nextInt();
+                    System.out.print("Enter Empno to Delete :");
+                    StudentId = s.nextInt();
                     System.out.println("--------------------------------------------------");
                     i = c.iterator();
                     while (i.hasNext()) {
                         StudentData e = i.next();
-                        if (e.getSno() == sno1) {
+                        if (e.getStudentID() == StudentId) {
                             i.remove();
                             found = true;
                         }
                     }
-
                     if (!found) {
                         System.out.println("Record Not Found");
                     } else {
                         System.out.println("Record is Deleted Successfully...!");
                     }
-
-                    System.out.println("--------------------------------------------------");
+                    System.out.println("----------------------------");
                     break;
-                case 5:
+                case UPDATE_STUDENT:
                     found = false;
                     System.out.println("Which student do you want to excute? ");
                     System.out.print("Student id: ");
-                    sno1 = s.nextInt();
-
+                    StudentId = s.nextInt();
                     ListIterator<StudentData> li = c.listIterator();
                     while (li.hasNext()) {
                         StudentData e = li.next();
-                        if (e.getSno() == sno1) {
+                        if (e.getStudentID() == StudentId) {
                             System.out.println("Please provide the data for the student to update. ");
-                            System.out.print("First name: ");
-                            sfname = s1.nextLine();
-                            System.out.print("Last name: ");
-                            slname = s1.nextLine();
-                            li.set(new StudentData(sno1, sfname, slname));
+                            System.out.printf("Student if (%s): ", e.getStudentID());
+                            StudentId = s.nextInt();
+                            System.out.printf("First name (%s): ", e.getStudentFirstName());
+                            StudentFirstName = s1.nextLine();
+                            System.out.printf("Last name (%s): ", e.getStudentLastName());
+                            StudentLastName = s1.nextLine();
+                            System.out.println();
+                            li.set(new StudentData(StudentId, StudentFirstName, StudentLastName));
                             found = true;
                         }
                     }
@@ -143,4 +120,3 @@ class StudentDetails {
         } while (ch != 0);
     }
 }
-
