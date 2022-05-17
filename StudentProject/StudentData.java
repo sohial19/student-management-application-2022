@@ -1,31 +1,33 @@
 package StudentProject;
 
-class StudentData {
-    private int StudentID;
-    private String StudentFirstName;
-    private String StudentLastName;
+public class StudentData {
+    private int studentId;
+    private String studentFirstName;
+    private String studentLastName;
 
-    StudentData(int StudentID, String StudentFirstName, String StudentLastName) {
-        this.StudentID = StudentID;
-        this.StudentFirstName = StudentFirstName;
-        this.StudentLastName = StudentLastName;
+    public StudentData(int studentID, String studentFirstName, String studentLastName) {
+        this.studentId = studentID;
+        this.studentFirstName = studentFirstName;
+        this.studentLastName = studentLastName;
     }
 
-    public int getStudentID() {
+    public int getStudentId() {
 
-        return StudentID;
+        return studentId;
     }
 
     public String getStudentLastName() {
 
-        return StudentLastName;
+        return studentLastName;
     }
 
     public String getStudentFirstName() {
-        return StudentFirstName;
+
+        return studentFirstName;
     }
 
     public String toString() {
-        return StudentID + " " + StudentFirstName + " " + StudentLastName;
+
+        return studentId + " " + studentFirstName + " " + studentLastName;
     }
 }
