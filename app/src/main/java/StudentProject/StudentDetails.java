@@ -12,7 +12,7 @@ public class StudentDetails {
     public static void main(String[] args) {
 
         List<StudentData> dataStore = new ArrayList<StudentData>();
-        Scanner s = new Scanner(System.in);
+        Scanner inputReader = new Scanner(System.in);
         Scanner s1 = new Scanner(System.in);
         int MenuNumber;
         do {
@@ -26,7 +26,7 @@ public class StudentDetails {
             System.out.println("5: Update student");
             System.out.println("which function do you want to excute? ");
             System.out.print("Menu item: ");
-            MenuNumber = s.nextInt();
+            MenuNumber = inputReader.nextInt();
             //The value which you want give into the keyboard and it takes valid number
             // The switch statement it takes the value and its excuted specified number in the above values
             switch (MenuNumber) {
@@ -35,7 +35,7 @@ public class StudentDetails {
                     System.out.println("--------------------------------------------------");
                     System.out.println("Please provide the data for the student to store. ");
                     System.out.print("Student id: ");
-                    int studentid = s.nextInt();
+                    int studentid = inputReader.nextInt();
                     System.out.print("First name: ");
                     String StudentFirstName = s1.nextLine();
                     System.out.print("Last name: ");
@@ -61,7 +61,7 @@ public class StudentDetails {
                     boolean found = false;
                     System.out.println("Please give the student id to search? ");
                     System.out.print("Student id:");
-                    int studentsid = s.nextInt();
+                    int studentsid = inputReader.nextInt();
                     System.out.println("--------------------------------------------------");
                     i = dataStore.iterator();
                     while (i.hasNext()) {
@@ -80,7 +80,7 @@ public class StudentDetails {
                 case REMOVE_STUDENT:
                     found = false;
                     System.out.print("Enter StdeuntId to Delete Record? ");
-                    studentsid = s.nextInt();
+                    studentsid = inputReader.nextInt();
                     System.out.println("--------------------------------------------------");
                     i = dataStore.iterator();
                     while (i.hasNext()) {
@@ -101,14 +101,14 @@ public class StudentDetails {
                     found = false;
                     System.out.println("Which student do you want to excute? ");
                     System.out.print("Student id: ");
-                    studentsid = s.nextInt();
+                    studentsid = inputReader.nextInt();
                     ListIterator<StudentData> li = dataStore.listIterator();
                     while (li.hasNext()) {
                         StudentData e = li.next();
                         if (e.getStudentId() == studentsid) {
                             System.out.println("Please provide the data for the student to update. ");
                             System.out.printf("Student if (%s): ", e.getStudentId());
-                            studentsid = s.nextInt();
+                            studentsid = inputReader.nextInt();
                             System.out.printf("First name (%s): ", e.getStudentFirstName());
                             StudentFirstName = s1.nextLine();
                             System.out.printf("Last name (%s): ", e.getStudentLastName());
